@@ -109,8 +109,11 @@ public class iOSNotificationPostProcessor : MonoBehaviour
         // Add all the settings to the plist.
         foreach (var setting in settings)
         {
-            if (setting.Value.GetType() == typeof(bool))
-                rootDict.SetBoolean(setting.Key, Convert.ToBoolean(setting.Value));
+            if (setting.Value is bool value)
+            {
+                Debug.Log($"[NotificationPostProcessor] \nKey: {setting.Key} \nValue: {value}");
+                rootDict.SetBoolean(setting.Key, value);
+            }
             else if (setting.Value.GetType() == typeof(PresentationOption) || setting.Value.GetType() == typeof(AuthorizationOption))
                 rootDict.SetInteger(setting.Key, (int)setting.Value);
         }
