@@ -65,12 +65,6 @@
              if (defaultAuthorizationOptions <= 0)
                  defaultAuthorizationOptions = (UNAuthorizationOptionSound + UNAuthorizationOptionAlert + UNAuthorizationOptionBadge);
 
-             if (authorizeOnLaunch)
-             {
-                 UnityNotificationManager* manager = [UnityNotificationManager sharedInstance];
-                 [manager requestAuthorization: defaultAuthorizationOptions withRegisterRemote: registerRemoteOnLaunch forRequest: NULL];
-                 manager.remoteNotificationForegroundPresentationOptions = remoteForegroundPresentationOptions;
-             }
          }];
 
         [nc addObserverForName: kUnityDidRegisterForRemoteNotificationsWithDeviceToken
