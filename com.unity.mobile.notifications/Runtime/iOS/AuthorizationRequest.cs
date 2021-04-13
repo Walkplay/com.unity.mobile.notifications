@@ -121,10 +121,11 @@ namespace Unity.Notifications.iOS
         /// <param name="authorizationOption"> The authorization options your app is requesting. You may specify multiple options to request authorization for. Request only the authorization options that you plan to use.</param>
         /// <param name="registerForRemoteNotifications"> Set this to true to initiate the registration process with Apple Push Notification service after the user has granted authorization
         /// If registration succeeds the DeviceToken will be returned. You should pass this token along to the server you use to generate remote notifications for the device. </param>
-        public AuthorizationRequest(AuthorizationOption authorizationOption, bool registerForRemoteNotifications)
+        public IDisposable Send(AuthorizationOption authorizationOption, bool registerForRemoteNotifications)
         {
             var handle = GCHandle.Alloc(this);
             iOSNotificationsWrapper.RequestAuthorization(GCHandle.ToIntPtr(handle), (int)authorizationOption, registerForRemoteNotifications);
+            return this;
         }
 
         private void OnAuthorizationRequestCompleted(iOSAuthorizationRequestData requestData)

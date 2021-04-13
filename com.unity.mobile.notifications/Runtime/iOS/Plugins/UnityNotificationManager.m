@@ -81,6 +81,7 @@
     if (!SYSTEM_VERSION_10_OR_ABOVE)
         return;
 
+    NSLog(@"[Notifications] RequestAuthorization native",);
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
 
     BOOL supportsPushNotification = [[[NSBundle mainBundle] objectForInfoDictionaryKey: @"UnityAddRemoteNotificationCapability"] boolValue];
